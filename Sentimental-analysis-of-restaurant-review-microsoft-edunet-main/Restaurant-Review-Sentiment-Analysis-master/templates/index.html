@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Biriyani Koota</title>
+  <style>
+  * {
+    padding: 0;
+    margin: 0;
+  
+    box-sizing: border-box;
+  
+    font-family: "Baloo Bhai 2", cursive;
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+  
+    background-color: #262626;
+  
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    overflow: hidden;
+  }
+  /* #navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  } */
+  #order{
+    border-radius: 32px;
+    background-color: black;
+  }
+  #button{
+    
+    border-radius: 23px;
+    text-align: center;
+    width: 112px;
+    justify-content: center;
+    padding: 14px 202px;
+  }
+  
+  ul {
+    display: flex;
+    list-style: none;
+    /* text-align: center; */
+    color: #fff;
+    gap: 2rem;
+    position: fixed;
+    right: 0;
+    padding-right: 15px;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+  }
+  a:hover {
+    background-color: rgb(22, 22, 94);
+    border-radius: 10px;
+    padding: 10px;
+  }
+  .logo {
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 2rem;
+    color: #fff;
+  
+    margin-right: 700px;
+  }
+  .btn {
+    margin-top: 30px;
+  
+    color: white;
+    cursor: pointer;
+    border-radius: 25px;
+    padding: 1rem 2rem;
+  }
+  
+  img {
+    width: 100%;
+  
+    object-fit: cover;
+    object-position: center;
+  }
+  header {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),
+      url(https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80);
+    background-position: center;
+    background-size: cover;
+  
+    height: 100vh;
+  }
+  #home {
+    display: flex;
+  
+    text-align: center;
+    flex-direction: column;
+    padding: 220px 200px;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+  
+    text-align: center;
+  }
+  .overlay {
+    background: rgb(0, 0, 0, -5);
+    height: 100vh;
+  }
+  #mobile {
+    display: none;
+    height: 70px;
+    line-height: 40px;
+    /* background-color: rgba(0, 0, 0, 0.200); */
+    background-color: #262626;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    overflow: hidden;
+  }
+  
+  #mobile ul li {
+    justify-content: flex-end;
+    padding: -25px 5px;
+    margin: -38px 0;
+    font-size: 1rem;
+    color: white;
+  }
+  #mobile ul li a {
+    display: flex;
+    text-decoration: none;
+    color: white;
+  }
+  @media screen and (max-width: 768px) {
+    #mobile {
+      display: block;
+    }
+    #navbar {
+      display: none;
+    }
+    #home {
+      display: flex;
+  
+      margin-top: 20px;
+  
+      text-align: center;
+  
+      color: #fff;
+      justify-content: center;
+      align-items: center;
+  
+      text-align: center;
+    }
+  
+    .logo1 {
+      justify-content: flex-start;
+      align-items: flex-start;
+      font-size: 1.8rem;
+      color: #fff;
+  
+      margin-left: 20px;
+      margin-right: 500px;
+      margin-top: 15px;
+    }
+    a:hover {
+      background-color: rgb(22, 22, 94);
+      border-radius: 16px;
+      padding: 6px 8px 6px 8px;
+      margin: -7px;
+    }
+    header {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),
+        url(https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80);
+      background-position: center;
+      background-size: cover;
+  
+      height: 180vh;
+    }
+  }
+  .title {
+    text-align: center;
+    width: 100%;
+    color: yellow;
+  }
+  
+  #menu {
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-gap: 20px 40px;
+    background: rgb(245, 242, 242);
+    min-height: 100vh;
+    /* margin-bottom: 20px; */
+  }
+  .heading {
+    background: rgb(245, 242, 242);
+    color: #373333;
+    margin-bottom: 30px;
+    padding: 60px 0 30px 0;
+    grid-column: 1/-1;
+    text-align: center;
+  }
+  .heading > h3 {
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: 5px;
+  }
+  /* .card {
+    display: grid;
+    position: relative;
+    grid-template-rows: auto 1fr;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin: 10px 20px;
+  } */
+  
+  .card img {
+    position: relative;
+    width: 100%;
+    height: 49vh;
+    border-radius: 15px 15px 0 0;
+  }
+  
+  .details {
+    padding: 20px 10px;
+    display: grid;
+    grid-template-rows: auto 1fr 50px;
+    grid-row-gap: 15px;
+  }
+  .details-sub {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+  .details-sub h5 {
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .price {
+    text-align: right;
+  }
+  .details p {
+    color: #6f6f6f;
+    font-size: 15px;
+    line-height: 25px;
+    align-self: stretch;
+  }
+  .details button {
+    /* background-color: #cb202d; */
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 7px;
+    width: 180px;
+  }
+  #btt{
+   
+    height: fit-content;
+    background-color: rgb(22, 22, 94);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 24px;
+    width: 79px;
+    height: 34px;
+  }
+  
+  #about {
+    padding: 25px 0;
+  }
+  .about_row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 100px;
+  }
+  .about_column {
+    flex: 1;
+  }
+  #btn1 {
+    margin-top: 20px;
+    padding: 10px 10px;
+    border-radius: 15px;
+  }
+  .about_column img {
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    object-fit: fill;
+    margin: auto;
+  }
+  .title {
+    color: #373333;
+    margin-bottom: 30px;
+    padding: 50px 0 30px 0;
+    text-align: center;
+  }
+  
+  #order {
+    background: rgb(245, 242, 242);
+    color: white;
+    min-height: 100vh;
+  }
+  .title1 {
+    color: #373333;
+    margin-bottom: 30px;
+    padding: 50px 0 30px 0;
+    text-align: center;
+  }
+  form {
+    width: 450px;
+    background-color: white;
+  
+    box-shadow: 0 0 20px 0 rgb(213, 212, 210);
+    margin: auto;
+    margin-top: -20px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+  }
+  .inp_box {
+    width: 350px;
+    height: 37px;
+    /* margin-top: 20px; */
+    margin: 25px 45px 0 45px;
+  
+    padding: 0 10px;
+    border-radius: 14px;
+    border: 1px solid #777;
+    outline: none;
+  }
+  .text_area {
+    height: 160px;
+    padding-top: 10px;
+  }
+  #btt1 {
+    text-align: center;
+    justify-content: center;
+    padding: 17px 34px;
+    
+  }
+  #btt2 {
+    text-align: center;
+    justify-content: center;
+    padding: 17px 34px;
+    
+  }
+  #btt3 {
+    text-align: center;
+    justify-content: center;
+    padding: 17px 34px;
+    
+  }
+  .btn2 {
+    border-radius: 20px;
+    margin: 20px 45px;
+    padding: 0 10px;
+    /* margin: auto; */
+    width: 30%;
+  }
+  
+  textarea {
+    height: 150px;
+    padding-top: 10px;
+  }
+  .btn2 {
+    border-radius: 15px;
+    color: #fff;
+    margin-top: 18px;
+    padding: 10px;
+  }
+  button {height:fit-content;
+    background-color: rgb(22, 22, 94);
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  /* button:hover {
+    background-color: rgb(94, 158, 61);
+  } */
+  
+  .btn100{
+    background-color: #262626;
+  
+  }
+  #review{
+    width: 383px;
+    height: 45px;
+  }
+  
+  footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    width: 100%;
+    background-color: #262626;
+    color: white;
+  }
+</style>
+</head>
+
+<body>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<a href="cart.html"></a>
+  <div class="container">
+
+    <header>
+      <nav id="navbar">
+        <div class="logo"><span>Biriyani Koota</span></div>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#order">Order</a></li>
+          <li><a href="#order"><button class="btn100"  onclick="viewCart()">View Cart</button></a></li>
+          <li><a href="admin_login.html">Admin</a></li>
+        </ul>
+      </nav>
+      <div id="mobile">
+        <div class="logo1"><span>Biriyani Koota<br>ಸ್ವಾಗತ</span></div>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#order">Order</a></li>
+          <li><a href="#viewcart">View Cart</a></li>
+        </ul>
+      </div>
+
+      <div class="overlay">
+        <section id="home">
+          <h1 class="h-primary">Welcome to Biriyani Koota</h1>
+          <br>
+          <p>We specialize in serving authentic biryani flavors from across India, ensuring an exquisite culinary journey for our customers. </p>
+        
+          <button id="btn1">Order Now</button>
+        </section>
+      </div>
+    </header>
+
+    <div id="menu">
+      <div class="heading">
+        <h1>Menu</h1>
+        <h3>Today's Special</h3>
+      </div>
+      <div class="card">
+        <img src="../templates/images/R.png" alt="">
+        <div class="details">
+          <div class="details-sub">
+            <h5>Hyderabadi Biriyani</h5>
+            <h5 class="price"> ₹150</h5>
+          </div>
+          <p>Hyderabad Biryani is a quintessential Indian rice dish renowned for its rich, aromatic flavors. Fragrant basmati rice is layered with succulent marinated meat, typically chicken or mutton, with a blend of exotic spices.</p>
+          <button class="btn" onclick="addToCart('Hyderabadi Biryani', 150)">Add To Cart</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img
+          src="unnamed.png" width="300" height="400">
+        <div class="details">
+          <div class="details-sub">
+            <h5>Hosakote Biriyani</h5>
+            <h5 class="price">₹ 160 </h5>
+          </div>
+          <p>Hoskote Biryani is a delightful blend of traditional biryani and Karnataka's culinary heritage. Fragrant basmati rice is layered with marinated meat, infused with aromatic spices like cloves, cinnamon, and cardamom.</p>
+          <button class="btn" onclick="addToCart('Hosakote Biryani', 160)">Add To Cart</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img
+          src="OIP.jpeg"
+          alt="">
+        <div class="details">
+          <div class="details-sub">
+            <h5>Donne Biriyani</h5>
+            <h5 class="price"> ₹120 </h5>
+          </div>
+          <p>Donne Biryani is a culinary masterpiece that fuses the essence of traditional biryani with a modern twist.This aromatic delight tantalizes taste buds with its fragrant spices and perfectly cooked rice</p>
+         <button class="btn" onclick="addToCart('Donne Biryani', 120)">Add To Cart</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img
+          src="ambur.jpeg"
+          alt="">
+        <div class="details">
+          <div class="details-sub">
+            <h5>Ambur Dum Biriyani</h5>
+            <h5 class="price"> ₹100</h5>
+          </div>
+          <p>Ambur Biryani, hailing from the southern town of Ambur in Tamil Nadu, is a delectable South Indian rice dish renowned for its unique blend of flavors.</p>
+         <button class="btn" onclick="addToCart('Ambur Dum Biryani', 100)">Add To Cart</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img
+          src="kas.jpeg"
+          alt="">
+        <div class="details">
+          <div class="details-sub">
+            <h5>Kashmiri Biriyani</h5>
+            <h5 class="price"> ₹140 </h5>
+          </div>
+          <p>Kashmiri Biryani is a fragrant and flavorful rice dish originating from the picturesque region of Kashmir. Known for its rich and aromatic spices.</p>
+          <button class="btn" onclick="addToCart('Kashmiri Biryani', 140)">Add To Cart</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img
+          src="https://images.app.goo.gl/qwSwahN9jrXdS5mM6"
+          alt="">
+        <div class="details">
+          <div class="details-sub">
+            <h5>Kalmi Biriyani</h5>
+            <h5 class="price"> ₹160 </h5>
+          </div>
+          <p>Kalmi Biryani is a delectable Indian dish known for its unique and mouthwatering flavors. It features tender chicken drumsticks.</p>
+          <button class="btn" onclick="addToCart('Kalmi Biryani', 160)">Add To Cart</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="about">
+      <h1 class="title">About us</h1>
+      <div class="about_row">
+        <div class="about_column">
+          <p>Biryani Koota is not just a restaurant; it's a culinary journey through the heart of India's most beloved dish. Our passionate chefs bring together a symphony of spices and the finest ingredients to create biryanis that are nothing short of extraordinary. With a menu inspired by diverse regional flavors, from the fragrant Lucknawi biryani to the fiery Andhra-style concoctions, each bite is an adventure for your taste buds. Our commitment to quality, hospitality, and a warm, inviting ambiance makes Biryani Koota the perfect destination for those seeking an authentic and unforgettable biryani experience. Join us and savor the magic of biryani, one delectable grain at a time.</p>
+          <button id="btn1">learn more</button>
+        </div>
+        <div class="about_column">
+          <img src="https://img.freepik.com/free-photo/chef-making-ok-sign-white-background_1368-2804.jpg?w=2000
+        " alt="">
+        </div>
+      </div>
+    </div>
+    <div id="order">
+      <h1 class="title1">Feedback</h1>
+      <form method="POST">
+        <label for="review">Enter a review:</label><br>
+        <input type="text" id="review" name="review"><br>
+        <input type="submit" value="Submit">
+    </form>
+
+  </div>
+  
+  <footer>
+    <div>
+  
+      <p>
+        All trademarks are the property of owners
+All rights reserved © 2023 Biriyani Koota (India) Ltd.
+      </p>
+    </div>
+  </footer>
+  </div>
+<script>
+  // Initialize an empty cart array
+  let cart = [];
+
+  // Function to add an item to the cart
+  function addToCart(itemName, itemPrice) {
+    const item = { name: itemName, price: itemPrice };
+    cart.push(item);
+    alert(`${itemName} added to cart.`);
+  }
+
+  // Function to view the cart
+  function viewCart() {
+    // Store the cart data in local storage before opening the cart page
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Open the cart.html page
+    window.open('cart.html', '_blank');
+  }
+</script>
+
+
+</body>
+
+</html>

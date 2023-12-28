@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #cart-list {
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      margin: 20px;
+    }
+
+    #cart-list li {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    #cart-total {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 20px;
+    }
+
+    a {
+      display: block;
+      width: 150px;
+      text-align: center;
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+      margin: 0 auto;
+    }
+
+    a:hover {
+      background-color: #555;
+    }
+     /* Style for the bill section */
+#bill {
+  display: none;
+  background-color: #fff;
+  max-width: 300px;
+  margin: 20px auto;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  position: relative;
+}
+
+/* Style for bill heading */
+#bill h1 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Style for bill items */
+#bill-list {
+  list-style: none;
+  padding: 0;
+}
+
+#bill-list li {
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Style for bill total */
+#bill-total {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+/* Style for the "Generate Bill" button */
+#generate-bill-btn {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+  border-radius: 5px;
+}
+
+/* Style for the "Generate Bill" button on hover */
+#generate-bill-btn:hover {
+  background-color: #0056b3;
+}
+
+  </style>
+  <!-- ... (other head content) ... -->
+</head>
+<body>
+  <h1>Your Shopping Cart</h1>
+  <ul id="cart-list">
+    <!-- Cart items will be dynamically added here using JavaScript -->
+  </ul>
+  <p>Total: <span id="cart-total">0</span></p>
+  <button onclick="generateBill()">Generate Bill</button>
+<div id="bill" style="display: none;">
+  <h1>Your Bill</h1>
+  <ul id="bill-list">
+    <!-- Bill items will be dynamically added here using JavaScript -->
+  </ul>
+  <p>Total: ₹<span id="bill-total">0</span></p>
+  <!-- Add a button to print the bill -->
+<button id="print-bill-btn" onclick="printBill()">Print Bill</button>
+
+</div>
+
+  <script>
+    
+    // Retrieve the cart data from local storage
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Function to display cart items
+    function displayCart() {
+      const cartList = document.getElementById('cart-list');
+      const cartTotal = document.getElementById('cart-total');
+
+      // Clear any existing items in the cart
+      cartList.innerHTML = '';
+
+      let total = 0;
+
+      // Loop through each item in the cart
+      for (const item of cart) {
+        const listItem = document.createElement('li');
+        listItem.textContent = item.name; // Display the item name
+        cartList.appendChild(listItem);
+        total += item.price;
+      }
+
+      // Update the total
+      cartTotal.textContent = total;
+    }
+
+    // Call the displayCart function to show cart items when the page loads
+    displayCart();
+    // Function to generate the bill
+function generateBill() {
+  const billDiv = document.getElementById('bill');
+  const billList = document.getElementById('bill-list');
+  const billTotal = document.getElementById('bill-total');
+
+  // Clear existing bill items
+  billList.innerHTML = '';
+
+  let total = 0;
+
+  // Loop through each item in the cart and add it to the bill
+  for (const item of cart) {
+    const billItem = document.createElement('li');
+    billItem.textContent = `${item.name}: ₹${item.price}`;
+    billList.appendChild(billItem);
+    total += item.price;
+  }
+
+  // Update the total in the bill
+  billTotal.textContent = total;
+
+  // Display the bill section
+  billDiv.style.display = 'block';
+
+  // Hide the cart section
+  const cartDiv = document.getElementById('cart');
+  cartDiv.style.display = 'none';
+}
+// Function to print the bill
+function printBill() {
+  // Show the bill section (if it's hidden)
+  const billDiv = document.getElementById('bill');
+  billDiv.style.display = 'block';
+
+  // Hide the rest of the content (e.g., header, menu) for printing
+  const otherContent = document.querySelectorAll('body > *:not(#bill)');
+  for (const element of otherContent) {
+    element.style.display = 'none';
+  }
+
+  // Print the bill
+  window.print();
+
+  // Restore the visibility of the hidden content
+  for (const element of otherContent) {
+    element.style.display = 'block';
+  }
+
+  // Hide the bill section after printing
+  billDiv.style.display = 'none';
+}
+
+  </script>
+</body>
+</html>
